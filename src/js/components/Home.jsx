@@ -12,8 +12,9 @@ const Home = () => {
 
 	function addTask(event) {
 		if (event.key === "Enter" && newTask.trim() !== '') {
-			setTasks([...tasks, newTask]);
-			console.log(tasks);
+			//setTasks([...tasks, newTask]);
+			setTasks(prevTasks => [...prevTasks, newTask]); //declaramos una variable de actualizacion "prev" para garantizar el estado mas reciente de Tasks
+			//console.log(tasks);
 			setnewTask('');
 
 		}
@@ -40,7 +41,7 @@ const Home = () => {
 						}}>
 			<div className="text-center">
 				<h3 className="card-header text-center text-dark mb-3 ">ToDo List</h3>
-				<div className="card"
+				<div className="card" key={tasks.length}
 					style={{
 						backgroundColor:'#f7f7f7',
 						border:'2px solid #ddd',
@@ -66,7 +67,7 @@ const Home = () => {
 						))}
 					</ul>
 
-					<div className="card-footer d-flex justify-content-start"><span style={{fontSize: '12px'}}>{tasks.length} Items left</span></div>
+					<div className="card-footer d-flex justify-content-start" ><span style={{fontSize: '12px'}}>{tasks.length} Items left</span></div>
 				</div>
 			</div>
 		</div>
